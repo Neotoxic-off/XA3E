@@ -1,9 +1,9 @@
 # XA3E
-🦴 XOR Aligned 3 Encryption
+🦴 Polymorphic XOR encryption algorithm
 
 ## Encryption steps
 - Loads all the characters
-- Pack them all to 3 characters
+- Pack them all
 - Align if necessary
 - Encrypt using XOR key
 - If progressive key is activated, current index will have a changed
