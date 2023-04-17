@@ -22,7 +22,7 @@ class XPE:
         lines = []
 
         if (os.path.exists(file) == True):
-            with open(file, 'r') as f:
+            with open(file, 'r', encoding = "utf-8") as f:
                 lines = f.read()
 
         return (lines)
@@ -31,7 +31,7 @@ class XPE:
         splitted = file.split('\\')
         file_name = splitted[len(splitted) - 1]
 
-        with open(f"{self.Setup.output.path}/{file_name}", "w+") as f:
+        with open(f"{self.Setup.output.path}/{file_name}", "w+", encoding = "utf-8") as f:
             f.write(content)
 
     def __encrypt__(self):
