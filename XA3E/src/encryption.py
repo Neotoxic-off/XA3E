@@ -6,6 +6,7 @@ class Encryption:
         self.key_size = key_size if (key_size != None) else 64
         self.progressive = progressive
         self.padding = '-'
+        self.progression = 0
 
         self.__generate_key__()
 
@@ -16,11 +17,20 @@ class Encryption:
             data[index + 1:]
         ))
     
-    def __progressivity__(self, line: str, index: int):
+    def __progressivity__(self, line: str, index: int, content: list):
         line_size = len(line)
+        content_size = len(content)
+        morphology = None
+        iteration = self.progression << 32
 
         if (self.progressive == True):
-            self.key = self.__update__(self.key, index, f"{line_size - (10 * (line_size / 10))}")
+            morphology = (
+                (content_size - index) +
+                (self.progression >> (len(content) + 32))
+            )
+
+            self.key = self.__update__(self.key, index - self.progression, f"{morphology}")
+            self.progression += 1
 
     def __generate_key__(self):
         characters = []
@@ -55,7 +65,7 @@ class Encryption:
                 buffer.append(chr(ord(line[i]) ^ ord(self.key[align])))
             result.append("".join(buffer))
             buffer.clear()
-            self.__progressivity__(line, index)
+            self.__progressivity__(line, index, content)
 
         return (result)
 

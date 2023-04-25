@@ -28,7 +28,7 @@ class XPE:
         return (lines)
 
     def __save__(self, file: str, content: str):
-        splitted = file.split('\\')
+        splitted = file.split('/')
         file_name = splitted[len(splitted) - 1]
 
         with open(f"{self.Setup.output.path}/{file_name}", "w+", encoding = "utf-8") as f:
