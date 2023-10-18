@@ -6,7 +6,7 @@
 - Pack them all
 - Align if necessary
 - Encrypt using XOR key
-- If progressive key is activated, current index will have a changed
+- If progressive key is activated, current index will be changed
 
 ## Usage
 ```
